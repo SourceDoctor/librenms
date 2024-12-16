@@ -165,10 +165,10 @@ class PortsController extends TableController
             'ifOutUcastPkts_rate' => $port->ifOutUcastPkts_rate,
             'ifInErrors' => $port->ifInErrors,
             'ifOutErrors' => $port->ifOutErrors,
-            'ifInErrors_delta' => $port->poll_period ? Number::formatSi($port->ifInErrors_delta / $port->poll_period, 2, 3, 'EPS') : '',
-            'ifOutErrors_delta' => $port->poll_period ? Number::formatSi($port->ifOutErrors_delta / $port->poll_period, 2, 3, 'EPS') : '',
+            'ifInErrors_delta' => $port->poll_period ? Number::formatSi($port->ifInErrors_delta / $port->poll_period, 2, 0, 'EPS') : '',
+            'ifOutErrors_delta' => $port->poll_period ? Number::formatSi($port->ifOutErrors_delta / $port->poll_period, 2, 0, 'EPS') : '',
             'ifType' => Rewrite::normalizeIfType($port->ifType),
-            'ifAlias' => $port->ifAlias,
+            'ifAlias' => htmlentities($port->ifAlias),
             'actions' => (string) view('port.actions', ['port' => $port]),
         ];
     }

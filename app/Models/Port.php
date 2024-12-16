@@ -286,7 +286,7 @@ class Port extends DeviceRelatedModel
         return $query->whereIn($query->qualifyColumn('port_id'), function ($query) use ($portGroup) {
             $query->select('port_id')
                 ->from('port_group_port')
-                ->where($this->qualifyColumn('port_group_id'), $portGroup);
+                ->where('port_group_id', $portGroup);
         });
     }
 
@@ -395,6 +395,11 @@ class Port extends DeviceRelatedModel
     public function pseudowires(): HasMany
     {
         return $this->hasMany(Pseudowire::class, 'port_id');
+    }
+
+    public function qos(): HasMany
+    {
+        return $this->hasMany(Qos::class, 'port_id');
     }
 
     public function stackChildren(): HasManyThrough
